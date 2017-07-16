@@ -65,18 +65,26 @@ class CalculationsController < ApplicationController
   def payment_form
    render("calculations/payment_form_template.html.erb")
   end 
+  #! END PAYMENT
  
- 
- 
- 
- #! END PAYMENT
- 
-#! START Random
+  #! START Random
   def flex_min_max_random
     @min_num = params["min"].to_i
     @max_num = params["max"].to_i
     @random_num = rand(@min_num..@max_num)
     render("calculations/flexible_minmax_template.html.erb")
   end
+  
+  def process_random
+    @min_num = params["user_min"].to_f
+    @max_num = params["user_max"].to_f
+    @random_num = rand(@min_num..@max_num)
+    render("calculations/random_results_template.html.erb")
+  end  
+  
+  def random_form
+   render("calculations/random_form_template.html.erb")
+  end
+
 
 end
