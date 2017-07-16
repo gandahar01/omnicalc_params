@@ -1,4 +1,5 @@
 class CalculationsController < ApplicationController
+  #! START QUARE
   def flex_square
     @user_number = params["a_number"].to_i
     @squared_number = @user_number**2
@@ -14,6 +15,7 @@ class CalculationsController < ApplicationController
   def square_form
    render("calculations/square_form_template.html.erb")
   end
+  #! END SQUARE
 
 #! START SQUARE_ROOT
   def flex_square_root
@@ -46,6 +48,27 @@ class CalculationsController < ApplicationController
     @monthly_payment =(@n/@d).round(2)
     render("calculations/flexible_payment_template.html.erb")
  end
+ 
+  def process_payment
+    @apr = params["apr_number"].to_f
+    @years = params["years_number"].to_i
+    @principal = params["principal_number"].to_f
+    @apr2 = (@apr / 100)
+    @rate = (@apr/1200)
+    @term = (@years*12)
+    @n = (@rate*@principal)
+    @d = 1 - ((1 + @rate)**-@term)
+    @monthly_payment =(@n/@d).round(2)
+    render("calculations/payment_results_template.html.erb")
+  end  
+  
+  def payment_form
+   render("calculations/payment_form_template.html.erb")
+  end 
+ 
+ 
+ 
+ 
  #! END PAYMENT
  
 #! START Random
