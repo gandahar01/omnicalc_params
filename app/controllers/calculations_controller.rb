@@ -36,7 +36,7 @@ class CalculationsController < ApplicationController
     @term = (@years*12)
     @n = (@rate*@principal)
     @d = 1 - ((1 + @rate)**-@term)
-    @monthly_payment = @n/@d
+    @monthly_payment =(@n/@d).round(2)
     render("calculations/flexible_payment_template.html.erb")
  end
  #! END PAYMENT
