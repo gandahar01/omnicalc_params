@@ -6,23 +6,30 @@ class CalculationsController < ApplicationController
   end
 
   def process_square
-    @user_number = params["the_user_number"].to_i
+    @user_number = params["the_user_number"].to_f
     @squared_number = @user_number**2
     render("calculations/square_results_template.html.erb")
   end
   
-    def square_form
-    
-     render("calculations/square_form_template.html.erb")
-    end
+  def square_form
+   render("calculations/square_form_template.html.erb")
+  end
 
 #! START SQUARE_ROOT
   def flex_square_root
-
     @user_number = params["a_number"].to_f
     @squareroot_number = @user_number**(0.5)
-    
     render("calculations/flexible_square_root_template.html.erb")
+  end
+  
+  def process_square_root
+    @user_number = params["the_user_number"].to_f
+    @squareroot_number = @user_number**(0.5)
+    render("calculations/square_root_results_template.html.erb")
+  end  
+  
+  def square_root_form
+   render("calculations/square_root_form_template.html.erb")
   end
 #! END SQUARE_ROOT
 
